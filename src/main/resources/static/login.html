@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login and Registration</title>
+    <style>
+        .container {
+            width: 400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        function redirectToRegistration() {
+            window.location.href = "http://localhost:8080/signup.html";
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <h1>Login</h1>
+    <form action="login.html" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <input type="submit" value="Login">
+    </form>
+
+    <h1>Registration</h1>
+    <p>Don't have an account? <a href="#" onclick="redirectToRegistration()">Click here to register</a>.</p>
+</div>
+</body>
+</html>
