@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -39,7 +40,15 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .requestMatchers("/sign_up")
                 .permitAll()
-                .and().formLogin(calc -> calc.loginPage("/login")).build();
+                .requestMatchers("/")
+                .hasAuthority("USER")
+                .and().formLogin(calc -> calc.loginPage("/login")
+                        .loginProcessingUrl("/login")
+                        .defaultSuccessUrl("/",true)
+                       ).logout(logout->logout
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                        .permitAll())
+                .build();
 
     }
 

@@ -30,6 +30,7 @@ public class ClientService {
     public Client signup(SignDTO signDTO){
         Client client = clientDTOMapper.dtoTo(signDTO);
         var role = roleService.getRole("USER");
+
         client.setRoles(List.of(role));
         client.setPassword(encoder.encode(client.getPassword()));
         clientRepo.save(client);

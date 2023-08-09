@@ -10,9 +10,11 @@ public class ClientDTOMapperimpl implements ClientDTOMapper {
     @Override
     public SignDTO entityTo(Client client){
         if(client==null) return null;
+
         return SignDTO.builder().gender(client.getGender())
                 .name(client.getName())
                 .password(client.getPassword())
+
                 .username(client.getUsername())
                 .build();
     }
@@ -20,10 +22,12 @@ public class ClientDTOMapperimpl implements ClientDTOMapper {
     @Override
     public Client dtoTo(SignDTO signDTO) {
         if(signDTO==null) return null;
+        String user = signDTO.getUsername().replaceAll("<[^>]*>","");
+
         return Client.builder()
                 .gender(signDTO.getGender())
                 .name(signDTO.getName())
                 .password(signDTO.getPassword())
-                .username(signDTO.getUsername()).build();
+                .username(user).build();
     }
 }
